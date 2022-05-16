@@ -14,7 +14,7 @@ variables:
   ContainerRegistryRepository: 'helloworld'
   Region: 'eastus2'
   ContainerAppName: 'helloworld-dev-container-app-$(Build.BuildId)'
-  ResourceGroup: 'helloworld-dev-resource-group-$(Build.BuildId)'
+  ResourceGroup: 'ncontractsdevrg'
   #Variables that are defined in the pipeline
   #ContainerRegistrySC: <Service Connection for the Container Registry>
   #AzureResourceManagerSC: <Name of the Azure Resource Manager service connection>
@@ -57,14 +57,14 @@ stages:
       runOnce:
         deploy:
           steps:
-          - task: AzureCLI@2
-            displayName: 'Create Resource Group'
-            inputs:
-              azureSubscription: '$(AzureResourceManagerSC)'
-              scriptType: 'pscore'
-              scriptLocation: 'inlineScript'
-              inlineScript: | 
-                az group create -l $(Region) -n $(ResourceGroup)
+          # - task: AzureCLI@2
+          #   displayName: 'Create Resource Group'
+          #   inputs:
+          #     azureSubscription: '$(AzureResourceManagerSC)'
+          #     scriptType: 'pscore'
+          #     scriptLocation: 'inlineScript'
+          #     inlineScript: | 
+          #       az group create -l $(Region) -n $(ResourceGroup)
 
           - task: AzureCLI@2
             displayName: 'Container App - Init Extension'
@@ -136,22 +136,22 @@ stages:
         failOnMinTestsNotRun: true
         minimumExpectedTests: '1'
 
-- stage: Teardown
-  displayName: Teardown stage
-  dependsOn: Test
-  condition: eq('${{ parameters.teardown }}', true)
-  pool:
-    vmImage: 'ubuntu-latest'
-  jobs:
-  - job: Teardown
-    displayName: Teardown job
-    steps:
-    - checkout: none
-    - task: AzureCLI@2
-      displayName: 'Delete Resource Group'
-      inputs:
-        azureSubscription: '$(AzureResourceManagerSC)'
-        scriptType: 'pscore'
-        scriptLocation: 'inlineScript'
-        inlineScript: | 
-          az group delete -n $(ResourceGroup) --yes --no-wait
+# - stage: Teardown
+#   displayName: Teardown stage
+#   dependsOn: Test
+#   condition: eq('${{ parameters.teardown }}', true)
+#   pool:
+#     vmImage: 'ubuntu-latest'
+#   jobs:
+#   - job: Teardown
+#     displayName: Teardown job
+#     steps:
+#     - checkout: none
+#     - task: AzureCLI@2
+#       displayName: 'Delete Resource Group'
+#       inputs:
+#         azureSubscription: '$(AzureResourceManagerSC)'
+#         scriptType: 'pscore'
+#         scriptLocation: 'inlineScript'
+#         inlineScript: | 
+#           az group delete -n $(ResourceGroup) --yes --no-wait
