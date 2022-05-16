@@ -30,7 +30,7 @@ namespace HelloWorld
                     var endpoint = configRoot.GetSection("AppConfigurationSettings").GetValue<string>("Endpoint");
                     config.AddAzureAppConfiguration(options =>
                     {
-                        var credential = new ManagedIdentityCredential();
+                        var credential = new DefaultAzureCredential(new DefaultAzureCredentialOptions { ManagedIdentityClientId = "3bc54897-6c15-451d-8063-dfbfa2fbde84" });
                         options.Connect(new Uri(endpoint), credential)
                             // Load configuration values with no label
                             .Select(KeyFilter.Any, LabelFilter.Null)
