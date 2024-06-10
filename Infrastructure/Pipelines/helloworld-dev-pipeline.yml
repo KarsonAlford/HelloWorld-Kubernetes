@@ -111,7 +111,7 @@ stages:
   displayName: Test stage
   dependsOn: Deploy
   pool:
-    vmImage: 'windows-2022'
+    name: 'testAgentPool'
   jobs:
   - job: RunTests
     displayName: Run Tests
