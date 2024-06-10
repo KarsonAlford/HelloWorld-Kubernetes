@@ -111,7 +111,7 @@ stages:
   displayName: Test stage
   dependsOn: Deploy
   pool:
-    name: 'testAgentPool'
+    name: 'WindowsAgents'
   jobs:
   - job: RunTests
     displayName: Run Tests
