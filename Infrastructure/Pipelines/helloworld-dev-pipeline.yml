@@ -133,9 +133,8 @@ stages:
         searchFolder: '$(System.DefaultWorkingDirectory)'
         failOnMinTestsNotRun: true
         minimumExpectedTests: '1'
-        vsTestVersion: 'latest'
-        # vstestLocationMethod: 'location'
-        # vstestLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\TestAgent\Common7\IDE\Extensions\TestPlatform'
+        vstestLocationMethod: 'location'
+        vstestLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\TestAgent\Common7\IDE\Extensions\TestPlatform'
 
 - stage: Teardown
   displayName: Teardown stage
