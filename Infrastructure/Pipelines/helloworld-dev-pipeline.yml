@@ -19,8 +19,6 @@ variables:
   #Variables that are defined in the pipeline
   #ContainerRegistrySC: <Service Connection for the Container Registry>
   #AzureResourceManagerSC: <Name of the Azure Resource Manager service connection>
-  #LogAnalyticsWorkspace
-  #LogAnalyticsResourceGroup: <Log analytics isn't created here and we can't assume that the container app and log analytics will be in the same resource group>
   #ContainerRegistryLoginServer
   #ContainerRegistryUsername
   #ContainerRegistryPassword
