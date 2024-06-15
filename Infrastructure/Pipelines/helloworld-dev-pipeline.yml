@@ -9,17 +9,16 @@ trigger:
     include:
     - 'Infrastructure/Pipelines/*'
     - 'HelloWorld/*'
+    - 'HelloWorld.IntegrationTests/*'
 
 variables:
   ContainerRegistryRepository: 'helloworld'
-  Region: 'eastus2'
-  ContainerAppName: 'helloworld-dev-container-app-$(Build.BuildId)'
-  ResourceGroup: 'helloworld-dev-resource-group-$(Build.BuildId)'
+  Region: 'centralus'
+  ContainerAppName: 'helloworld-dev-ca-$(Build.BuildId)'
+  ResourceGroup: 'helloworld-dev-rg-$(Build.BuildId)'
   #Variables that are defined in the pipeline
   #ContainerRegistrySC: <Service Connection for the Container Registry>
   #AzureResourceManagerSC: <Name of the Azure Resource Manager service connection>
-  #LogAnalyticsWorkspace
-  #LogAnalyticsResourceGroup: <Log analytics isn't created here and we can't assume that the container app and log analytics will be in the same resource group>
   #ContainerRegistryLoginServer
   #ContainerRegistryUsername
   #ContainerRegistryPassword
@@ -110,7 +109,7 @@ stages:
   displayName: Test stage
   dependsOn: Deploy
   pool:
-    vmImage: 'windows-2022'
+    name: 'WindowsAgents'
   jobs:
   - job: RunTests
     displayName: Run Tests
@@ -132,6 +131,8 @@ stages:
         searchFolder: '$(System.DefaultWorkingDirectory)'
         failOnMinTestsNotRun: true
         minimumExpectedTests: '1'
+        vstestLocationMethod: 'location'
+        vstestLocation: 'C:\Program Files (x86)\Microsoft Visual Studio\2022\TestAgent\Common7\IDE\Extensions\TestPlatform'
 
 - stage: Teardown
   displayName: Teardown stage
