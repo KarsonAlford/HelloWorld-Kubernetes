@@ -7,7 +7,7 @@ resources:
       type: github
       name: NetworkContractSolutions/EnvironmentAutomation
       ref: refs/heads/test-agents
-      endpoint: NetworkContractSolutions
+      endpoint: 'NetworkContractSolutions (3)'
 
 #variables that are defined in the pipeline
   #AzureResourceManagerSC: <Name of the Azure Resource Manager service connection>
@@ -26,7 +26,6 @@ stages:
     - template: 'Templates/Tasks/setup-testagent.yml@EnvironmentAutomation'
       parameters:
         AzureResourceManagerSC: '$(AzureResourceManagerSC)'
-        VMName: '$(VMName)'
         OctopusApiKey: '$(OctopusApiKey)'
 
 # - stage: Test
