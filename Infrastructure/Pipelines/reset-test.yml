@@ -7,7 +7,7 @@ resources:
       type: github
       name: NetworkContractSolutions/EnvironmentAutomation
       ref: refs/heads/test-agents
-      endpoint: NContractsGithub
+      endpoint: 'NetworkContractSolutions (3)'
 
 #variables that are defined in the pipeline
   #AzureResourceManagerSC: <Name of the Azure Resource Manager service connection>
