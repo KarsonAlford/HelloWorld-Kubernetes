@@ -17,8 +17,10 @@ stages:
 - stage: CreateEnvironment
   displayName: Create Environment
   dependsOn: []
+  # pool:
+  #   name: 'WindowsAgents'
   pool:
-    name: 'WindowsAgents'
+    vmImage: 'ubuntu-latest'
   jobs:
   - job: CreateVM
     displayName: Create VM
