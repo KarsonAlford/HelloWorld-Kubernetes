@@ -19,6 +19,7 @@ stages:
   dependsOn: []
   pool:
     name: 'WindowsAgents'
+    demands: TestAgentSupport
   jobs:
   - job: CreateVM
     displayName: Create VM
