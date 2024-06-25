@@ -28,20 +28,6 @@ stages:
         AzureResourceManagerSC: '$(AzureResourceManagerSC)'
         OctopusApiKey: '$(OctopusApiKey)'
   
-- stage: CreateEnvironment2
-  displayName: Create Environment2
-  dependsOn: []
-  pool:
-    vmImage: 'ubuntu-latest'
-  jobs:
-  - job: CreateVM2
-    displayName: Create VM2
-    steps:
-    - template: 'Templates/Tasks/setup-testagent.yml@EnvironmentAutomation'
-      parameters:
-        AzureResourceManagerSC: '$(AzureResourceManagerSC)'
-        OctopusApiKey: '$(OctopusApiKey)'
-
 # - stage: Test
 #   displayName: Test stage
 #   dependsOn: Deploy
