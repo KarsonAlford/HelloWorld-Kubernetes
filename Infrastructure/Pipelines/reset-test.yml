@@ -14,15 +14,15 @@ resources:
   #OctopusApiKey: 
   
 stages:
-- stage: CreateEnvironment
-  displayName: Create Environment
+- stage: EnvironmentTest
+  displayName: Environment Test
   dependsOn: []
   pool:
     name: 'WindowsAgents'
     demands: TestAgentSupport
   jobs:
-  - job: CreateVM
-    displayName: Create VM
+  - job: EnvironmentTest
+    displayName: Environment Test
     steps:
     - template: 'Templates/Tasks/setup-testagent.yml@EnvironmentAutomation'
       parameters:
